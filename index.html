@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <title>Artificial Intelligence</title>
+
+  <style>
+    #rajkumar {
+      text-decoration: underline;
+      cursor: none;
+
+    }
+  </style>
+</head>
+
+<body class="bg-dark">
+
+    <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark btn-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" id="rajkumar" title="Raj Kumar & Co.">Raj Kumar & Co.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#Modal">
+              Image Finder
+            </a>
+          </li>
+          <li class="nav-item" onclick="movie()">
+            <a class="nav-link" href="#">Movie Finder</a>
+          </li>
+          <li class="nav-item" onclick="book()">
+            <a class="nav-link" href="#">Search Book</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#Modal1">
+              Cartoonist
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Text to Speech</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- text to speech -->
+  <div class="container bg-dark" id="speech">
+    <h1 class="text-light">Text to Speech</h1>
+    <p class="lead text-light mt-4">Select Voice</p>
+
+    <!-- Select Menu for Voice -->
+    <select id="voices" class="form-select bg-secondary text-light"></select>
+
+    <!-- Range Slliders for Volume, Rate & Pitch -->
+    <div class="d-flex mt-4 text-light">
+      <div>
+        <p class="lead">Volume</p>
+        <input type="range" min="0" max="1" value="1" step="0.1" id="volume" />
+        <span id="volume-label" class="ms-2">1</span>
+      </div>
+      <div class="mx-5">
+        <p class="lead">Rate</p>
+        <input type="range" min="0.1" max="10" value="1" id="rate" step="0.1" />
+        <span id="rate-label" class="ms-2">1</span>
+      </div>
+      <div>
+        <p class="lead">Pitch</p>
+        <input type="range" min="0" max="2" value="1" step="0.1" id="pitch" />
+        <span id="pitch-label" class="ms-2">1</span>
+      </div>
+    </div>
+    <!-- Text Area  for the User to Type -->
+    <textarea class="form-control bg-dark text-light mt-5" cols="30" rows="10" placeholder="Type here..."></textarea>
+
+    <!-- Control Buttons -->
+    <div class="mb-5">
+      <button id="start" class="btn btn-success mt-5 me-3">Start</button>
+      <button id="pause" class="btn btn-warning mt-5 me-3">Pause</button>
+      <button id="resume" class="btn btn-info mt-5 me-3">Resume</button>
+      <button id="cancel" class="btn btn-danger mt-5 me-3">Cancel</button>
+    </div>
+  </div>
+  <!-- /text to sp[eech close -->
+
+  <!-- image finder-->
+  <!-- Modal -->
+  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Image Finder</h5>
+          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" placeholder="Search Image"
+            oninput='document.getElementById("image").setAttribute("src",`https://source.unsplash.com/1600x900/?${this.value}`);'>
+          <img src="https://cdn.dribbble.com/users/2233427/screenshots/4870342/__.gif" alt="searched image" id="image"
+            style="width: 100%;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cartoonist -->
+  <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Cartoonist</h5>
+          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" placeholder="Enter your name" oninput='cartoon(this.value)'>
+          <img src="https://i.gifer.com/origin/5b/5b136f80985cd998898049215f413275.gif" alt="cartoonist" id="mypic"
+            style="width: 100%;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+</body>
+
+<script>
+  // check internet very responsive
+  function internet() {
+    if (!(navigator.onLine)) {
+      document.getElementById('intalert').innerHTML = `<label for="InputEmail1" style="font-size: 2.5ch; padding-bottom: 1%;">check your internet connection!</label>`;
+      requestAnimationFrame(internet)
+    }
+    else {
+      document.getElementById('intalert').innerHTML = `<form action="/bot_search/" method="GET">
+      <div class="form-group">
+        <label for="InputEmail1" class = "text-white"style="font-size: 2.5ch; padding-bottom: 1%;">What's Your Query</label>
+        <input type="text" class="form-control" id="InputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter your Query" name="query">
+      </div>
+      <button type="submit" class="btn btn-outline-danger mt-3">Search</button>
+    </form>
+    {% if ans %}
+
+    <h4 style="color:white; padding-top: 2%;">Search Result for {{query}} :</h4>
+    <h4 style="color:white; padding-top: 2%;" class="result">{{ans}}</h4>
+
+    {% endif %}`;
+      if (!(navigator.onLine)) {
+        requestAnimationFrame(internet)
+      }
+    }
+  }
+
+  requestAnimationFrame(internet)
+
+  // movie finder
+  function movie() {
+    swal({
+      text: 'Search for a movie. e.g. "La La Land".',
+      content: "input",
+      button: {
+        text: "Search!",
+        closeModal: false,
+      },
+    })
+      .then(name => {
+        if (!name) throw null;
+
+        return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`);
+      })
+      .then(results => {
+        return results.json();
+      })
+      .then(json => {
+        const movie = json.results[0];
+
+        if (!movie) {
+          return swal("No movie was found!");
+        }
+
+        const name = movie.trackName;
+        const imageURL = movie.artworkUrl100;
+
+        swal({
+          title: "Top result:",
+          text: name,
+          icon: imageURL,
+        });
+      })
+      .catch(err => {
+        if (err) {
+          swal("Oh noes!", "The AJAX request failed!", "error");
+        } else {
+          swal.stopLoading();
+          swal.close();
+        }
+      });
+  }
+
+  // book
+  function book() {
+    swal({
+      text: 'Search for a book. e.g. "The Count of Monte Cristo".',
+      content: "input",
+      button: {
+        text: "Search!",
+        closeModal: false,
+      },
+    })
+      .then(name => {
+        if (!name) throw null;
+
+        return fetch(`https://www.googleapis.com/books/v1/volumes?q=${name}`);
+      })
+      .then(results => {
+        return results.json();
+      })
+      .then(json => {
+        const book = json.items[0].volumeInfo;
+        if (!book) {
+          return swal("No book was found!");
+        }
+
+        const name = book.title;
+        let list = book.authors;
+        let author = "";
+        for (let index = 0; index < list.length; index++) {
+          author = author + list[index] + ",";
+        }
+        author = author.replace(/.$/, "");
+        const imageURL = book.imageLinks.thumbnail;
+
+        swal({
+          title: `Top result: ${name}`,
+          text: `Author → ${author}`,
+          icon: imageURL,
+        });
+      })
+      .catch(err => {
+        if (err) {
+          swal("Oh noes!", "The AJAX request failed!", "error");
+        } else {
+          swal.stopLoading();
+          swal.close();
+        }
+      });
+  }
+
+  // cartoon
+  function cartoon(value) {
+    if (value == null || value == "") {
+      document.getElementById("mypic").setAttribute("src", `https://i.gifer.com/origin/5b/5b136f80985cd998898049215f413275.gif`);
+    } else {
+      document.getElementById("mypic").setAttribute("src", `https://joeschmoe.io/api/v1/${value}`);
+    }
+  }
+ 
+ 
+  /* text to speech js*/
+
+  // Initialize new SpeechSynthesisUtterance object
+  let speech = new SpeechSynthesisUtterance();
+
+  // Set Speech Language
+  speech.lang = "en";
+
+  let voices = []; // global array of available voices
+
+  window.speechSynthesis.onvoiceschanged = () => {
+    // Get List of Voices
+    voices = window.speechSynthesis.getVoices();
+
+    // Initially set the First Voice in the Array.
+    speech.voice = voices[0];
+
+    // Set the Voice Select List. (Set the Index as the value, which we'll use later when the user updates the Voice using the Select Menu.)
+    let voiceSelect = document.querySelector("#voices");
+    voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
+  };
+
+  document.querySelector("#rate").addEventListener("input", () => {
+    // Get rate Value from the input
+    const rate = document.querySelector("#rate").value;
+
+    // Set rate property of the SpeechSynthesisUtterance instance
+    speech.rate = rate;
+
+    // Update the rate label
+    document.querySelector("#rate-label").innerHTML = rate;
+  });
+
+  document.querySelector("#volume").addEventListener("input", () => {
+    // Get volume Value from the input
+    const volume = document.querySelector("#volume").value;
+
+    // Set volume property of the SpeechSynthesisUtterance instance
+    speech.volume = volume;
+
+    // Update the volume label
+    document.querySelector("#volume-label").innerHTML = volume;
+  });
+
+  document.querySelector("#pitch").addEventListener("input", () => {
+    // Get pitch Value from the input
+    const pitch = document.querySelector("#pitch").value;
+
+    // Set pitch property of the SpeechSynthesisUtterance instance
+    speech.pitch = pitch;
+
+    // Update the pitch label
+    document.querySelector("#pitch-label").innerHTML = pitch;
+  });
+
+  document.querySelector("#voices").addEventListener("change", () => {
+    // On Voice change, use the value of the select menu (which is the index of the voice in the global voice array)
+    speech.voice = voices[document.querySelector("#voices").value];
+  });
+
+  document.querySelector("#start").addEventListener("click", () => {
+    // Set the text property with the value of the textarea
+    speech.text = document.querySelector("textarea").value;
+
+    // Start Speaking
+    window.speechSynthesis.speak(speech);
+  });
+
+  document.querySelector("#pause").addEventListener("click", () => {
+    // Pause the speechSynthesis instance
+    window.speechSynthesis.pause();
+  });
+
+  document.querySelector("#resume").addEventListener("click", () => {
+    // Resume the paused speechSynthesis instance
+    window.speechSynthesis.resume();
+  });
+
+  document.querySelector("#cancel").addEventListener("click", () => {
+    // Cancel the speechSynthesis instance
+    window.speechSynthesis.cancel();
+  });
+  /* text to speech close */
+
+
+</script>
+
+</html>
+
